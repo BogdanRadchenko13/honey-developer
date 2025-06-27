@@ -1,5 +1,7 @@
 import telebot
 import requests
+import threading
+from flask import Flask
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 API_INFO_URL = "https://honeyapi-kiwi.onrender.com/get_user_info"
@@ -14,6 +16,20 @@ bot = telebot.TeleBot(API_TOKEN)
 @bot.message_handler(commands=['start'])
 def start(message):
     bot.reply_to(message, f" Hello, {message.from_user.first_name} {message.from_user.last_name}! \n \ncommands list: \n<b>API Platform:</b> \n/key - Make / view API key information.", parse_mode='HTML')
+
+    app = Flask('')
+
+    @app.route('/')
+    def home():
+        return "✅ Бот работает!"
+
+    def run():
+        app.run(host='0.0.0.0', port=8080)
+
+# --- Запуск Flask в отдельном потоке ---
+    def keep_alive():
+        t = threading.Thread(target=run)
+        t.start()
 
 @bot.message_handler(commands=['key'])
 def check_key(message):
@@ -86,4 +102,5 @@ def cheat_Balance(message):
     else:
         bot.reply_to(message, "error: @$@$##@%#$@#@%#$@#$@$")
 
+keep_alive()
 bot.polling()
