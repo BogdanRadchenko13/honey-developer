@@ -26,11 +26,6 @@ def start(message):
     def run():
         app.run(host='0.0.0.0', port=8080)
 
-# --- Запуск Flask в отдельном потоке ---
-    def keep_alive():
-        t = threading.Thread(target=run)
-        t.start()
-
 @bot.message_handler(commands=['key'])
 def check_key(message):
     user_id = str(message.from_user.id)
@@ -102,5 +97,4 @@ def cheat_Balance(message):
     else:
         bot.reply_to(message, "error: @$@$##@%#$@#@%#$@#$@$")
 
-keep_alive()
 bot.polling()
