@@ -2,9 +2,9 @@ import telebot
 import requests
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-API_INFO_URL = "https://honeyAPI-KIWI.onrender.com/get_user_info"
-API_GEN_URL = "https://honeyAPI-KIWI.onrender.com/generate_key"
-API_BAL_URL = "https://honeyAPI-KIWI.onrender.com/check_balance"
+API_INFO_URL = "https://honeyapi-kiwi.onrender.com/get_user_info"
+API_GEN_URL = "https://honeyapi-kiwi.onrender.com/generate_key"
+API_BAL_URL = "https://honeyapi-kiwi.onrender.com/check_balance"
 
 ADMIN_ID = "7228049767"
 
